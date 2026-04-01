@@ -1,5 +1,7 @@
 # assembly-mcp
 
+[![SafeSkill 92/100](https://img.shields.io/badge/SafeSkill-92%2F100_Verified%20Safe-brightgreen)](https://safeskill.dev/scan/kossembly-dot-assembly-mcp)
+
 MCP (Model Context Protocol) server for the **Korean National Assembly Open API** ([open.assembly.go.kr](https://open.assembly.go.kr)).
 
 Search bills, track legislative progress, retrieve bill details and committee meeting records -- all from Claude Desktop or any MCP-compatible client.
