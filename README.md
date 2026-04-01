@@ -8,11 +8,8 @@ Search bills, track legislative progress, retrieve bill details and committee me
 
 | Tool | Description |
 |---|---|
-| `search_bill` | Search bills by name, proposer, committee, or status |
-| `get_bill_detail` | Get full legislative review history for a bill |
-| `get_bill_reason` | Get the proposal reason and links to the original document |
-| `get_bill_review_info` | Get committee review progress (receipt, presentation, resolution) |
-| `get_pending_bills` | List currently pending bills by committee or keyword |
+| `search_bill` | Search bills by name, proposer, committee, or status (use `proc_result="계류중"` for pending bills) |
+| `get_bill_detail` | Get full legislative review history, proposal info, and original document links (HWP/PDF) |
 | `search_meeting_record` | Search committee meeting records by year, committee, or keyword |
 
 ### Tool Parameters
@@ -24,37 +21,16 @@ Search bills, track legislative progress, retrieve bill details and committee me
 | `bill_name` | string | Bill name keyword (e.g. "인공지능", "정보통신망") |
 | `proposer` | string | Lead proposer name |
 | `committee` | string | Committee name (abbreviations supported) |
-| `proc_result` | string | Status: "계류중", "가결", "부결", "대안반영폐기", "임기만료폐기" |
+| `proc_result` | string | Status filter: "계류중", "가결", "부결", "대안반영폐기", "임기만료폐기". Omit for all |
 | `assembly_age` | string | Assembly number (default: "22") |
 | `limit` | integer | Max results (default: 20) |
 
 #### `get_bill_detail`
 
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `bill_id` | string | Yes | Bill ID from `search_bill` results |
-
-#### `get_bill_reason`
-
 | Parameter | Type | Description |
 |---|---|---|
-| `bill_id` | string | Bill ID |
+| `bill_id` | string | Bill ID from `search_bill` results |
 | `bill_no` | string | Bill number (alternative to bill_id) |
-
-#### `get_bill_review_info`
-
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `bill_id` | string | Yes | Bill ID |
-
-#### `get_pending_bills`
-
-| Parameter | Type | Description |
-|---|---|---|
-| `committee` | string | Committee name (abbreviations supported) |
-| `bill_name` | string | Bill name keyword |
-| `assembly_age` | string | Assembly number (default: "22") |
-| `limit` | integer | Max results (default: 30) |
 
 #### `search_meeting_record`
 
@@ -87,6 +63,9 @@ You can use common Korean abbreviations for committee names:
 | 농해수위 | 농림축산식품해양수산위원회 |
 | 문체위 | 문화체육관광위원회 |
 | 국토위 | 국토교통위원회 |
+| 운영위 | 국회운영위원회 |
+| 예결위 | 예산결산특별위원회 |
+| 윤리특위 | 윤리특별위원회 |
 
 ## Setup
 
@@ -154,7 +133,7 @@ Once configured, you can ask Claude in Korean:
 - **"22대 국회에서 발의된 정보통신망법 개정안 목록 보여줘"** -- lists amendments to the Information & Communications Network Act
 - **"이 법안의 심사경과 알려줘"** -- shows the legislative review history
 - **"법사위 최근 회의록 검색해줘"** -- searches recent Legislation & Judiciary Committee meeting records
-- **"의안번호 2200001로 제안이유 조회해줘"** -- retrieves the proposal reason by bill number
+- **"의안번호 2200001 상세 조회해줘"** -- retrieves bill detail by bill number
 
 ## License
 

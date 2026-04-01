@@ -8,11 +8,8 @@ Claude Desktop 또는 MCP 호환 클라이언트에서 의안 검색, 입법 진
 
 | 도구 | 설명 |
 |---|---|
-| `search_bill` | 법률안명·발의자·위원회·처리상태로 의안 검색 |
-| `get_bill_detail` | 의안의 전체 심사경과 조회 (소관위→법사위→본회의→공포) |
-| `get_bill_reason` | 제안이유 및 원문 링크 조회 |
-| `get_bill_review_info` | 위원회 심사정보 (접수·상정·의결 일자 및 결과) 조회 |
-| `get_pending_bills` | 현재 계류 중인 법률안 목록 조회 |
+| `search_bill` | 법률안명·발의자·위원회·처리상태로 의안 검색 (계류의안은 `proc_result="계류중"` 사용) |
+| `get_bill_detail` | 의안의 전체 심사경과 조회 (소관위→법사위→본회의→공포) + 원문 링크(HWP/PDF) |
 | `search_meeting_record` | 위원회 회의록 검색 |
 
 ### 도구별 파라미터
@@ -24,37 +21,16 @@ Claude Desktop 또는 MCP 호환 클라이언트에서 의안 검색, 입법 진
 | `bill_name` | string | 법률안명 키워드 (예: 인공지능, 정보통신망) |
 | `proposer` | string | 대표발의자 |
 | `committee` | string | 소관위원회 (약칭 가능) |
-| `proc_result` | string | 처리결과: "계류중", "가결", "부결", "대안반영폐기", "임기만료폐기" |
+| `proc_result` | string | 처리결과 필터: "계류중", "가결", "부결", "대안반영폐기", "임기만료폐기". 미입력 시 전체 |
 | `assembly_age` | string | 대수 (기본: "22") |
 | `limit` | integer | 조회 건수 (기본: 20) |
 
-#### `get_bill_detail` -- 의안 상세·심사경과
-
-| 파라미터 | 타입 | 필수 | 설명 |
-|---|---|---|---|
-| `bill_id` | string | 예 | 의안 ID (`search_bill` 결과에서 확인) |
-
-#### `get_bill_reason` -- 제안이유 조회
+#### `get_bill_detail` -- 의안 상세
 
 | 파라미터 | 타입 | 설명 |
 |---|---|---|
-| `bill_id` | string | 의안 ID |
+| `bill_id` | string | 의안 ID (`search_bill` 결과에서 확인) |
 | `bill_no` | string | 의안번호 (bill_id 대신 사용 가능) |
-
-#### `get_bill_review_info` -- 심사정보
-
-| 파라미터 | 타입 | 필수 | 설명 |
-|---|---|---|---|
-| `bill_id` | string | 예 | 의안 ID |
-
-#### `get_pending_bills` -- 계류의안 목록
-
-| 파라미터 | 타입 | 설명 |
-|---|---|---|
-| `committee` | string | 위원회 (약칭 가능) |
-| `bill_name` | string | 법률안명 키워드 |
-| `assembly_age` | string | 대수 (기본: "22") |
-| `limit` | integer | 조회 건수 (기본: 30) |
 
 #### `search_meeting_record` -- 회의록 검색
 
@@ -87,6 +63,9 @@ Claude Desktop 또는 MCP 호환 클라이언트에서 의안 검색, 입법 진
 | 농해수위 | 농림축산식품해양수산위원회 |
 | 문체위 | 문화체육관광위원회 |
 | 국토위 | 국토교통위원회 |
+| 운영위 | 국회운영위원회 |
+| 예결위 | 예산결산특별위원회 |
+| 윤리특위 | 윤리특별위원회 |
 
 ## 설치 및 설정
 
@@ -154,7 +133,7 @@ pip install -r requirements.txt
 - **"22대 국회에서 발의된 정보통신망법 개정안 목록 보여줘"**
 - **"이 법안의 심사경과 알려줘"**
 - **"법사위 최근 회의록 검색해줘"**
-- **"의안번호 2200001로 제안이유 조회해줘"**
+- **"의안번호 2200001 상세 조회해줘"**
 
 ## 라이선스
 
