@@ -61,7 +61,7 @@ Claude Desktop 또는 MCP 호환 클라이언트에서 의안 검색, 입법 진
 | 파라미터 | 타입 | 설명 |
 |---|---|---|
 | `committee` | string | 위원회명 (약칭 가능) |
-| `year` | string | 회의 연도 (예: "2026") |
+| `year` | string | 회의 연도 (예: "2026"). 접두사 매칭 지원 -- "202"로 2020년대 전체 검색 가능 |
 | `keyword` | string | 회의명 또는 안건명 키워드 |
 | `assembly_age` | string | 대수 (기본: "22") |
 | `limit` | integer | 조회 건수 (기본: 10) |
@@ -98,7 +98,7 @@ Claude Desktop 또는 MCP 호환 클라이언트에서 의안 검색, 입법 진
 ### 설치
 
 ```bash
-pip install mcp requests
+pip install -r requirements.txt
 ```
 
 ### API 인증키 발급

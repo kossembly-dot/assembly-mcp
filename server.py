@@ -1,11 +1,11 @@
 """
-국회 법제관 전용 MCP 서버 v3 (최종)
+국회 열린국회정보 MCP 서버 v3
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 환경변수: ASSEMBLY_API_KEY (열린국회정보 인증키)
-설치: pip install mcp requests
-실행: python server_final.py
+설치: pip install -r requirements.txt
+실행: python server.py
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-확인된 작동 API:
+사용 API:
   TVBPMBILL11       - 의안 검색 (주력)
   BILLINFODETAIL    - 의안 심사경과 상세
   nzmimeepazxkubdpn - 의안 목록 (COMMITTEE 필드 포함)
@@ -364,7 +364,7 @@ async def _get_bill_reason(bill_id="", bill_no="") -> dict:
                     "propose_dt":r.get("PPSL_DT", ""),
                     "committee": r.get("JRCMIT_NM", ""),
                 }
-        except:
+        except Exception:
             pass
 
     return {

@@ -61,7 +61,7 @@ Search bills, track legislative progress, retrieve bill details and committee me
 | Parameter | Type | Description |
 |---|---|---|
 | `committee` | string | Committee name (abbreviations supported) |
-| `year` | string | Meeting year (e.g. "2026") |
+| `year` | string | Meeting year (e.g. "2026"). Prefix matching supported -- "202" matches all 2020s |
 | `keyword` | string | Meeting title or agenda keyword |
 | `assembly_age` | string | Assembly number (default: "22") |
 | `limit` | integer | Max results (default: 10) |
@@ -98,7 +98,7 @@ You can use common Korean abbreviations for committee names:
 ### Installation
 
 ```bash
-pip install mcp requests
+pip install -r requirements.txt
 ```
 
 ### Getting an API Key
